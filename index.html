@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Progress Tracker</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Loading Screen */
+        #loadingScreen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            flex-direction: column;
+        }
+
+        #loadingBar {
+            width: 80%;
+            height: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        #loadingProgress {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0%;
+        }
+
+        /* Content */
+        #content {
+            display: none;
+            height: 100%;
+            overflow-y: auto;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+            flex: 1;
+        }
+
+        .picture-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .empty-picture {
+            width: 100%;
+            height: 300px;
+            border: 2px dashed #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            color: #999;
+            border-radius: 10px;
+            background-color: #f4f4f4;
+        }
+
+        .picture-caption {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .task.completed {
+            background-color: #e7f9e7;
+        }
+
+        .task-icon {
+            font-size: 1.5rem;
+            color: green;
+        }
+
+        .task-date {
+            font-size: 0.75rem;
+            color: #666;
+            margin-left: 10px;
+            align-self: flex-end;
+            font-style: italic;
+        }
+
+        .task.completed .task-date {
+            color: #4caf50;
+        }
+
+        .task-link {
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .task-link:hover {
+            text-decoration: underline;
+        }
+
+        .side-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #4caf50;
+        }
+
+        .icon-text {
+            margin-top: 5px;
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+        }
+
+        @media screen and (min-width: 800px) {
+            #content {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <h1 id="loadingText">Loading...</h1>
+        <div id="loadingBar">
+            <div id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+        <!-- Side Icon -->
+        <div class="side-icon">
+            <span>✉️</span>
+            <div class="icon-text">YOUSEF KHALED</div>
+        </div>
+        <div class="container">
+            <h1>Course Progress</h1>
+            <div class="task completed">
+                <span>Assignment 1</span>
+                <span class="task-date">19 August 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task completed">
+                <span>Assignment 2</span>
+                <span class="task-date">21 August 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task completed">
+                <span>Assignment 3</span>
+                <span class="task-date">24 August 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task completed">
+                <span>Assignment 4</span>
+                <span class="task-date">26 August 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task completed">
+                <span>Assignment 5</span>
+                <span class="task-date">27 August 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task completed">
+                <span>Assignment 6</span>
+                <span class="task-date">1 September 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task">
+                <span>Quiz</span>
+                <span class="task-date">1 September 2024</span>
+                <span class="task-icon">✔️</span>
+            </div>
+            <div class="task">
+                <span>Live Session</span>
+                <a href="#" class="task-link">Enter Now</a>
+            </div>
+        </div>
+        <div class="picture-container">
+            <h2>Develop an ASP.NET Core web app that consumes an API</h2>
+            <div class="empty-picture">
+			<!-- Put The Image Here :-->
+                <img src="logo.png" width="400px" alt="Logo"/>
+            </div>
+            <div class="picture-caption">
+                Validate your technical skills and open doors to new possibilities of advancement with Microsoft Applied Skills.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate loading progress
+        let loadingProgress = document.getElementById('loadingProgress');
+        let loadingScreen = document.getElementById('loadingScreen');
+        let content = document.getElementById('content');
+        let loadingText = document.getElementById('loadingText');
+
+        let progress = 0;
+        let interval = setInterval(() => {
+            progress += 1;
+            loadingProgress.style.width = progress + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                loadingScreen.style.display = 'none';
+                content.style.display = 'flex';
+            }
+        }, 70); // 70ms * 100 steps = 7 seconds
+
+        // Change loading text after 4 seconds
+        setTimeout(() => {
+            loadingText.textContent = 'Welcome Back, Yousef Khaled';
+        }, 4000); // 4000ms = 4 seconds
+    </script>
+
+</body>
+</html>
